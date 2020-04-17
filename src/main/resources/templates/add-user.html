@@ -1,0 +1,111 @@
+
+<html lang="en" data-layout-decorate="~{fragments/layout}"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org" >
+<head>
+    <title>Add-user</title>
+
+
+</head>
+
+<body>
+<div class="right_col" role="main" data-layout-fragment="content">
+    <div class="">
+
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 ">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Add User</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+
+                        <li><a class="close-link"><i class="fa fa-close"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+
+                    <form class="form-horizontal form-label-left" th:action="@{/admin/new-user}" th:object="${userCreateDto}" method="post">
+
+                        <span class="section">Personal Info</span>
+
+                        <div class="form-group row">
+                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="username">username  <span class="required">*:</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6">
+                                <input type="text" id="username" required="required" th:field="*{username}" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="email">Email <span class="required">*:</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6">
+                                <input type="email" id="email" name="last-name" required="required" th:field="*{email}" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-form-label col-md-3 col-sm-3 label-align">Gender :</label>
+                            <div class="col-md-6 col-sm-6">
+                                <div id="gender2" class="btn-group" data-toggle="buttons">
+                                    <label class="btn btn-secondary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-secondary">
+                                        <input type="radio" name="gender" value="male" th:field="*{gender}"class="join-btn"> &nbsp; Male &nbsp;
+                                    </label>
+                                    <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-secondary">
+                                        <input type="radio" name="gender" value="female" th:field="*{gender}"class="join-btn" >&nbsp; Female &nbsp;
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-form-label col-md-3 col-sm-3 label-align"> Account Type :</label>
+                            <div class="col-md-6 col-sm-6">
+                                <div id="accounttype" class="btn-group" data-toggle="buttons">
+                                    <label class="btn btn-secondary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-secondary">
+                                        <input type="radio" name="type" value="admin"th:field="*{type}" class="join-btn"> &nbsp; Admin &nbsp;
+                                    </label>
+                                    <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-secondary">
+                                    <input type="radio" name="type" value="trainer"  th:field="*{type}" class="join-btn" > &nbsp; Trainer &nbsp;
+                                </label>
+                                    <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-secondary">
+                                        <input type="radio" name="type" value="learner"th:field="*{type}" class="join-btn"> &nbsp; Learner &nbsp;
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group  row">
+                            <div class="col-md-10 col-sm-8">
+
+                            </div>
+                            <div class="col-md-2 col-sm-4 " >
+
+                                            <button type='submit' class="btn btn-primary">Submit</button>
+                                            <button type='reset' class="btn btn-success">Reset</button>
+
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+</div>
+
+</div>
+</div>
+
+
+</body>
+</html>
