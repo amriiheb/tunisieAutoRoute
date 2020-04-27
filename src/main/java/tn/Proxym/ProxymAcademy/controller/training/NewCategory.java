@@ -32,7 +32,7 @@ public class NewCategory {
     @Autowired
     private ImageUploader imageUploader ;
 
-    public static String uploadDirectory = System.getProperty("user.dir")+"/src/main/resources/static/assets/uploads/category";
+    public static String uploadDirectory = "D://Workspace_spring//proxym_university//Proxym_University//upload";
     @GetMapping("/new-category")
     public String NewCategoryTraining(TrainingCategoryDto trainingCategoryDto, Model model){
         List<TrainingCategory> categoryList=category_trainingService.findAll() ;

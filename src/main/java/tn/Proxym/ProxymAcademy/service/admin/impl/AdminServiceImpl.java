@@ -1,17 +1,27 @@
 package tn.Proxym.ProxymAcademy.service.admin.impl;
 
+import org.dozer.DozerBeanMapper;
+import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tn.Proxym.ProxymAcademy.dao.admin.AdminDao;
+import tn.Proxym.ProxymAcademy.dao.verify_user.VerifyUserDao;
 import tn.Proxym.ProxymAcademy.dto.AdminCreateDto;
 import tn.Proxym.ProxymAcademy.dto.admin.UserCreateDto;
+import tn.Proxym.ProxymAcademy.mail.Mail;
+import tn.Proxym.ProxymAcademy.mail.MailService;
 import tn.Proxym.ProxymAcademy.model.Admin;
 import tn.Proxym.ProxymAcademy.model.Role;
 import tn.Proxym.ProxymAcademy.model.User;
+import tn.Proxym.ProxymAcademy.model.VerifyAccount;
 import tn.Proxym.ProxymAcademy.service.admin.AdminService;
 import tn.Proxym.ProxymAcademy.service.role.RoleService;
+import tn.Proxym.ProxymAcademy.util.RandomUtil;
 
+import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -21,24 +31,39 @@ public class AdminServiceImpl implements AdminService {
     AdminDao adminDao;
     @Autowired
     RoleService roleService ;
+    @Autowired
+    private VerifyUserDao verifyUserDao ;
+    @Autowired
+    private MailService mailService ;
 
     @Override
     public Admin createAdmin(UserCreateDto adminCreateDto) {
-        String email = adminCreateDto.getEmail();
-        String username = adminCreateDto.getUsername();
         String password = "Pr@xymAcademy1";
-
-        Admin admin = new Admin();
-        admin.setEmail(email);
-        admin.setUsername(username);
-        admin.setPassword(password);
+        Mapper mapper=new DozerBeanMapper() ;
+        Admin admin=mapper.map(adminCreateDto,Admin.class);
         admin.setActive(false);
         if(roleService.findById(1l).isPresent()) {
             Role role = roleService.findById(1l).get();
             admin.addRole(role);
         }
+        String token = RandomUtil.generateRandomStringNumber(6).toUpperCase();
+        VerifyAccount verifyAccount = new VerifyAccount();
+        verifyAccount.setAccount(admin);
+        verifyAccount.setCreatedDate(LocalDateTime.now());
+        verifyAccount.setExpiredDataToken(5);
+        verifyAccount.setToken(token);
+        verifyUserDao.create(verifyAccount);
 
+        Map<String, Object> maps = new HashMap<>();
+        maps.put("account", admin);
+        maps.put("token", token);
 
+        Mail mail = new Mail();
+        mail.setFrom("ProxymAcademy.com");
+        mail.setSubject("Registration");
+        mail.setTo(admin.getEmail());
+        mail.setModel(maps);
+        mailService.sendEmail(mail);
 
         return adminDao.create(admin);
     }

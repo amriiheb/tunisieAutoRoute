@@ -13,8 +13,12 @@ private Long id ;
 @ValidUsername
 @ValidCreateUsername
 private String username ;
+private String   firstname;
+private String lastname ;
 
-@ValidEmail
+
+
+    @ValidEmail
 @ValidCreateEmail
 private String email ;
 @ValidPassword
@@ -60,6 +64,22 @@ private String repeatPassword ;
 
     public void setRepeatPassword(String repeatPassword) {
         this.repeatPassword = repeatPassword;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
     @Override

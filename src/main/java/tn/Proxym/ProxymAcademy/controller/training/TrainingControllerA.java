@@ -7,13 +7,17 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
+import tn.Proxym.ProxymAcademy.dao.training.TrainingDao;
 import tn.Proxym.ProxymAcademy.dto.admin.UserCreateDto;
 import tn.Proxym.ProxymAcademy.dto.training.TrainingCreateDtoA;
 import tn.Proxym.ProxymAcademy.dto.trainingCategory.TrainingCategoryDto;
 import tn.Proxym.ProxymAcademy.model.Trainer;
 import tn.Proxym.ProxymAcademy.model.TrainingCategory;
 import tn.Proxym.ProxymAcademy.service.category_training.Category_TrainingService;
+import tn.Proxym.ProxymAcademy.service.image_uploader.ImageUploader;
 import tn.Proxym.ProxymAcademy.service.trainer.TrainerService;
+import tn.Proxym.ProxymAcademy.service.training.TrainingService;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -21,10 +25,16 @@ import java.util.List;
 @Controller
 @RequestMapping("/admin/training")
 public class TrainingControllerA {
+    public static String uploadDirectory = "D://Workspace_spring//proxym_university//Proxym_University//upload";
+@Autowired
+    ImageUploader imageUploader ;
     @Autowired
     private TrainerService trainerService ;
 @Autowired
 private Category_TrainingService category_trainingService ;
+@Autowired
+private TrainingService trainingService ;
+
 
     @GetMapping("/new-training")
     public String NewTraining(TrainingCreateDtoA trainingCreateDtoA, Model model){
@@ -36,7 +46,12 @@ private Category_TrainingService category_trainingService ;
         return  "new-training-creation" ; }
     @PostMapping("/new-training")
     public String NewTraining(@Valid TrainingCreateDtoA trainingCreateDtoA, BindingResult result) throws  Exception {
-        return "" ;
+//trainingService.create(trainingCreateDtoA) ;
+        MultipartFile file=trainingCreateDtoA.getPhoto() ;
+        trainingService.create(trainingCreateDtoA) ;
+
+
+        return "redirect:new-training" ;
     }
 
 

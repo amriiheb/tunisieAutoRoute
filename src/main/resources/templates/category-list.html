@@ -34,7 +34,7 @@
                         <div class="col-md-55" th:each="category : ${categoryList}">
                             <div class="thumbnail">
                                 <div class="image view view-first">
-                                    <img style="width: 95%;height: 100%; display: block;"  th:src="'/assets/uploads/category/'+${category.pathImage}" alt="image" />
+                                    <img style="width: 95%;height: 100%; display: block;"  th:src="@{'/uploads/'}+${category.pathImage}" alt="image" />
 
                                     <div class="mask">
                                        <p th:text="${category.name}"></p>
@@ -50,7 +50,8 @@
                         </div>
 
                     </div>
-    </div>
+
+</div>
 
 </div>
 </body>

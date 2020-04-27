@@ -1,52 +1,24 @@
 package tn.Proxym.ProxymAcademy.dto.training;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.springframework.web.multipart.MultipartFile;
 import tn.Proxym.ProxymAcademy.model.Trainer;
 import tn.Proxym.ProxymAcademy.model.TrainingCategory;
-
+@Getter
+@Setter
+@NoArgsConstructor
 public class TrainingCreateDtoA {
     private Long id ;
     private String name ;
     private String description ;
     private Trainer trainer ;
     private TrainingCategory Category ;
+    private String Difficulty ;
+    private int NumberOfHours ;
+    private MultipartFile photo ;
 
-    public Long getId() {
-        return id;
-    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Trainer getTrainer() {
-        return trainer;
-    }
-
-    public void setTrainer(Trainer trainer) {
-        this.trainer = trainer;
-    }
-
-    public TrainingCategory getCategory() {
-        return Category;
-    }
-
-    public void setCategory(TrainingCategory category) {
-        Category = category;
-    }
 }

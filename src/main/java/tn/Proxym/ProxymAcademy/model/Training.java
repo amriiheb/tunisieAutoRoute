@@ -5,13 +5,14 @@ import tn.Proxym.ProxymAcademy.audit.Auditable;
 import tn.Proxym.ProxymAcademy.audit.SpringSecurityAuditorAware;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "training")
 @EntityListeners(SpringSecurityAuditorAware.class)
-public class Training extends Auditable<String>  {
+public class Training extends Auditable<String>  implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,6 +27,22 @@ public class Training extends Auditable<String>  {
     @Column(name = "description")
     private String description ;
 
+    @Column(name = "difficulty")
+    private String difficulty ;
+
+    @Column
+    private int numberofhours ;
+
+ @Column
+ private String photo ;
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
 
     @ManyToOne()
     @JoinColumn(name="id_trainer", referencedColumnName = "id")
@@ -96,5 +113,29 @@ public class Training extends Auditable<String>  {
 
     public void setCategorie(TrainingCategory categorie) {
         this.category = categorie;
+    }
+
+    public String getDifficulty() {
+        return difficulty;
+    }
+
+    public void setDifficulty(String difficulty) {
+        this.difficulty = difficulty;
+    }
+
+    public int getNumberofhours() {
+        return numberofhours;
+    }
+
+    public void setNumberofhours(int numberofhours) {
+        this.numberofhours = numberofhours;
+    }
+
+    public TrainingCategory getCategory() {
+        return category;
+    }
+
+    public void setCategory(TrainingCategory category) {
+        this.category = category;
     }
 }

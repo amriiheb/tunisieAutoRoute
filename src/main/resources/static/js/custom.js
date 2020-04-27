@@ -1,8 +1,8 @@
 /**
  * Resize function without multiple trigger
- * 
+ *
  * Usage:
- * $(window).smartresize(function(){  
+ * $(window).smartresize(function(){
  *     // code here
  * });
  */
@@ -16,8 +16,8 @@
             var obj = this, args = arguments;
             function delayed () {
                 if (!execAsap)
-                    func.apply(obj, args); 
-                timeout = null; 
+                    func.apply(obj, args);
+                timeout = null;
             }
 
             if (timeout)
@@ -25,11 +25,11 @@
             else if (execAsap)
                 func.apply(obj, args);
 
-            timeout = setTimeout(delayed, threshold || 100); 
+            timeout = setTimeout(delayed, threshold || 100);
         };
     };
 
-    // smartresize 
+    // smartresize
     jQuery.fn[sr] = function(fn){  return fn ? this.bind('resize', debounce(fn)) : this.trigger(sr); };
 
 })(jQuery,'smartresize');
@@ -81,7 +81,7 @@ $(document).ready(function() {
                 $SIDEBAR_MENU.find('li').removeClass('active active-sm');
                 $SIDEBAR_MENU.find('li ul').slideUp();
             }
-            
+
             $li.addClass('active');
 
             $('ul:first', $li).slideDown(function() {
@@ -115,7 +115,7 @@ $(document).ready(function() {
     }).parent().addClass('active');
 
     // recompute content when resizing
-    $(window).smartresize(function(){  
+    $(window).smartresize(function(){
         setContentHeight();
     });
 
@@ -138,15 +138,15 @@ $(document).ready(function() {
         var $BOX_PANEL = $(this).closest('.x_panel'),
             $ICON = $(this).find('i'),
             $BOX_CONTENT = $BOX_PANEL.find('.x_content');
-        
+
         // fix for some div with hardcoded fix class
         if ($BOX_PANEL.attr('style')) {
             $BOX_CONTENT.slideToggle(200, function(){
                 $BOX_PANEL.removeAttr('style');
             });
         } else {
-            $BOX_CONTENT.slideToggle(200); 
-            $BOX_PANEL.css('height', 'auto');  
+            $BOX_CONTENT.slideToggle(200);
+            $BOX_PANEL.css('height', 'auto');
         }
 
         $ICON.toggleClass('fa-chevron-up fa-chevron-down');
@@ -277,3 +277,72 @@ if (typeof NProgress != 'undefined') {
         NProgress.done();
     });
 }
+/* ION RANGE SLIDER */
+
+function init_IonRangeSlider() {
+
+    if (typeof ($.fn.ionRangeSlider) === 'undefined') { return; }
+    console.log('init_IonRangeSlider');
+
+    $("#range_27").ionRangeSlider({
+        type: "double",
+        min: 1000000,
+        max: 2000000,
+        grid: true,
+        force_edges: true
+    });
+    $("#range").ionRangeSlider({
+        hide_min_max: true,
+        keyboard: true,
+        min: 0,
+        max: 5000,
+        from: 1000,
+        to: 4000,
+        type: 'double',
+        step: 1,
+        prefix: "$",
+        grid: true
+    });
+    $("#range_25").ionRangeSlider({
+        type: "double",
+        min: 1000000,
+        max: 2000000,
+        grid: true
+    });
+    $("#range_26").ionRangeSlider({
+        type: "double",
+        min: 0,
+        max: 10000,
+        step: 500,
+        grid: true,
+        grid_snap: true
+    });
+    $("#range_31").ionRangeSlider({
+        type: "double",
+        min: 0,
+        max: 100,
+        from: 30,
+        to: 70,
+        from_fixed: true
+    });
+    $(".range_min_max").ionRangeSlider({
+        type: "double",
+        min: 0,
+        max: 100,
+        from: 30,
+        to: 70,
+        max_interval: 50
+    });
+    $(".range_time24").ionRangeSlider({
+        min: +moment().subtract(12, "hours").format("X"),
+        max: +moment().format("X"),
+        from: +moment().subtract(6, "hours").format("X"),
+        grid: true,
+        force_edges: true,
+        prettify: function (num) {
+            var m = moment(num, "X");
+            return m.format("Do MMMM, HH:mm");
+        }
+    });
+
+};

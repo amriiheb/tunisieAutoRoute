@@ -1,12 +1,13 @@
 package tn.Proxym.ProxymAcademy.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.format.annotation.DateTimeFormat;
 import tn.Proxym.ProxymAcademy.audit.Auditable;
 import tn.Proxym.ProxymAcademy.audit.SpringSecurityAuditorAware;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -79,8 +80,8 @@ public   class User extends Auditable<String> implements Serializable{
 
 	@Column(name="lastname")
 	private String lastname ;
-
 	@Column(name="birthday")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date birthday ;
 
 	@Column(name = "photo")
@@ -88,14 +89,6 @@ public   class User extends Auditable<String> implements Serializable{
 
     @Column(name = "gender")
 	private String Gender ;
-//List of document
-
-
-
-
-
-
-
 
 	@JsonIgnore
 	@ManyToMany(fetch = FetchType.LAZY)

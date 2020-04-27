@@ -32,7 +32,8 @@ public ViewResolver viewResolver() {
 
     private ITemplateResolver templateResolver() {
         SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
-        templateResolver.setPrefix("classpath:/templates/");
+        templateResolver.setPrefix("classpath:/templates/*");
+        templateResolver.setPrefix("classpath:/templates/admin/");
         templateResolver.setSuffix(".html");
         templateResolver.setTemplateMode(TemplateMode.HTML);
         templateResolver.setCharacterEncoding("UTF-8");
