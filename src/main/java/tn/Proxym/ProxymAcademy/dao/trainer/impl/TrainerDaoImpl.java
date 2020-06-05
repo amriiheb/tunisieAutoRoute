@@ -16,12 +16,17 @@ public class TrainerDaoImpl implements TrainerDao {
 
     @Override
     public Optional<Trainer> findById(long id) {
-        return Optional.empty();
+        return trainerRepository.findById(id) ;
+    }
+
+    @Override
+    public List<Trainer> FindAllWithInheritance() {
+        return trainerRepository.findAll();
     }
 
     @Override
     public List<Trainer> findAll() {
-        return trainerRepository.findAll();
+        return trainerRepository.findJustTrainers();
     }
 
     @Override
@@ -36,7 +41,7 @@ public class TrainerDaoImpl implements TrainerDao {
 
     @Override
     public void delete(Trainer entity) {
-
+         trainerRepository.delete(entity);
     }
 
     @Override

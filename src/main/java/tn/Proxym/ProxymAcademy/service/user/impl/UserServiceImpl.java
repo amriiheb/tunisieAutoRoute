@@ -38,6 +38,12 @@ public class UserServiceImpl implements UserService {
     private MailService mailService ;
 
     @Override
+    public void updateUser(User user) {
+        accountDao.update(user) ;
+
+    }
+
+    @Override
     public User createMember(UserCreateDto accountDto) throws  MessagingException{
 
         String email = accountDto.getEmail();

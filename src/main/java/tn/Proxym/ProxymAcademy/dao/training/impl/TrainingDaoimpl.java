@@ -11,17 +11,21 @@ import java.util.Optional;
 
 @Repository
 public class TrainingDaoimpl implements TrainingDao {
+    @Override
+    public List<Training> myTrainings(Long id) {
+        return trainingRepository.myTrainings(id);
+    }
 
     @Autowired
     private TrainingRepository trainingRepository ;
     @Override
     public Optional<Training> findById(long id) {
-        return Optional.empty();
+        return trainingRepository.findById(id);
     }
 
     @Override
     public List<Training> findAll() {
-        return null;
+        return trainingRepository.findAll();
     }
 
     @Override
@@ -41,6 +45,7 @@ public class TrainingDaoimpl implements TrainingDao {
 
     @Override
     public void deleteById(long entityId) {
+        trainingRepository.deleteById(entityId);
 
     }
 }

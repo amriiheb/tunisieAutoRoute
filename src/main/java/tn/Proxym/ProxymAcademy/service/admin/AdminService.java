@@ -5,13 +5,14 @@ import tn.Proxym.ProxymAcademy.dto.admin.UserCreateDto;
 import tn.Proxym.ProxymAcademy.model.Admin;
 import tn.Proxym.ProxymAcademy.model.User;
 
+import javax.mail.MessagingException;
 import java.util.List;
 import java.util.Optional;
 
 public interface AdminService {
 
 
-    public Admin createAdmin(UserCreateDto adminCreateDto);
+    public Admin createAdmin(UserCreateDto adminCreateDto) throws MessagingException;
 
     Optional<Admin> findByUsernameOrEmail(String username, String email) ;
 
@@ -21,6 +22,10 @@ public interface AdminService {
 
     Optional<Admin> findById(Long id);
 
+    void Drop(Long id);
+
 List<Admin> findAll() ;
+    List<Admin> FindAllWithInheritance() ;
+
 
 }

@@ -5,7 +5,7 @@ INSERT INTO `role` (`id`, `description`, `name`) VALUES
 INSERT INTO `role` (`id`, `description`, `name`) VALUES
 (3, 'role LEARNER', 'ROLE_LERNER');
 /*
-INSERT INTO `USER` (`dtype`,`id`, `active`,  `email`, `password`, `username`) VALUES
+INSERT INTO `user` (`dtype`,`id`, `active`,  `email`, `password`, `username`) VALUES
 ('USER',1,true ,'amri.iheb.ih@gmail.com','Iheb@mr1', 'iheb');
 
 INSERT INTO `USER` (`dtype`,`id`, `active`,  `email`, `password`, `username`) VALUES

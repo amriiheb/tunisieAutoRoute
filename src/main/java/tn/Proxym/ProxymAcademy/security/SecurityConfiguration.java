@@ -51,7 +51,8 @@ public class SecurityConfiguration  extends WebSecurityConfigurerAdapter {
                 .failureHandler(customAuthenticationFailureHandler)
                 .and()
                 .logout()
-                .logoutUrl("/logout") ;
+                .logoutUrl("/logout");
+        http.headers().frameOptions().sameOrigin() ;
 
     }
 

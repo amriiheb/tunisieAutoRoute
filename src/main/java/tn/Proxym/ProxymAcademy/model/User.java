@@ -1,7 +1,11 @@
 package tn.Proxym.ProxymAcademy.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
 import tn.Proxym.ProxymAcademy.audit.Auditable;
 import tn.Proxym.ProxymAcademy.audit.SpringSecurityAuditorAware;
 
@@ -14,7 +18,10 @@ import java.util.Set;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @EntityListeners(SpringSecurityAuditorAware.class)
-public   class User extends Auditable<String> implements Serializable{
+@Getter
+@Setter
+@NoArgsConstructor
+public   class User implements Serializable{
 
 	private static final long serialVersionUID = -2460659701384032012L;
 
@@ -62,6 +69,9 @@ public   class User extends Auditable<String> implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	@Column(insertable = false, updatable = false)
+	private String dtype;
+
 
 	@Column(name = "USERNAME", length = 100, unique = true)
 	private String username;
@@ -90,6 +100,15 @@ public   class User extends Auditable<String> implements Serializable{
     @Column(name = "gender")
 	private String Gender ;
 
+    @Column(name = "cv")
+	private String cv ;
+
+    @Column(name = "location")
+	private String location ;
+
+    @Column(name="job")
+	private String job ;
+
 	@JsonIgnore
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "user_role", joinColumns = {
@@ -99,6 +118,10 @@ public   class User extends Auditable<String> implements Serializable{
 	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
 	private Set<VerifyAccount> verifyAccounts;
+
+
+	@OneToMany(targetEntity=Skill.class, mappedBy="user",cascade=CascadeType.ALL, fetch = FetchType.LAZY)
+	private Set<Skill> skills ;
 
 	public Long getId() {
 		return id;

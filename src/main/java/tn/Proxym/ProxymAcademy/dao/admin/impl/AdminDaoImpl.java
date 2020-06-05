@@ -15,12 +15,17 @@ public class AdminDaoImpl  implements AdminDao {
     AdminRepository adminRepository ;
     @Override
     public Optional<Admin> findById(long id) {
-        return Optional.empty();
+        return adminRepository.findById(id);
     }
 
     @Override
     public List<Admin> findAll() {
-        return adminRepository.findAll();
+        return adminRepository.FindJustAdmin();
+    }
+
+    @Override
+    public List<Admin> FindAllWithInheritance() {
+       return adminRepository.findAll() ;
     }
 
     @Override
@@ -35,7 +40,7 @@ public class AdminDaoImpl  implements AdminDao {
 
     @Override
     public void delete(Admin entity) {
-
+          adminRepository.delete(entity);
     }
 
     @Override

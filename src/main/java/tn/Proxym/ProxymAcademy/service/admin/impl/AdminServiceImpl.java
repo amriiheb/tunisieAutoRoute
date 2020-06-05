@@ -10,14 +10,12 @@ import tn.Proxym.ProxymAcademy.dto.AdminCreateDto;
 import tn.Proxym.ProxymAcademy.dto.admin.UserCreateDto;
 import tn.Proxym.ProxymAcademy.mail.Mail;
 import tn.Proxym.ProxymAcademy.mail.MailService;
-import tn.Proxym.ProxymAcademy.model.Admin;
-import tn.Proxym.ProxymAcademy.model.Role;
-import tn.Proxym.ProxymAcademy.model.User;
-import tn.Proxym.ProxymAcademy.model.VerifyAccount;
+import tn.Proxym.ProxymAcademy.model.*;
 import tn.Proxym.ProxymAcademy.service.admin.AdminService;
 import tn.Proxym.ProxymAcademy.service.role.RoleService;
 import tn.Proxym.ProxymAcademy.util.RandomUtil;
 
+import javax.mail.MessagingException;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
@@ -37,11 +35,19 @@ public class AdminServiceImpl implements AdminService {
     private MailService mailService ;
 
     @Override
-    public Admin createAdmin(UserCreateDto adminCreateDto) {
-        String password = "Pr@xymAcademy1";
+    public void Drop(Long id) {
+        Optional<Admin> admin=adminDao.findById(id) ;
+        adminDao.delete(admin.get());    }
+
+    @Override
+    public Admin createAdmin(UserCreateDto adminCreateDto) throws MessagingException {
+        adminCreateDto.setUsername(adminCreateDto.getFirstname()+adminCreateDto.getLastname()+RandomUtil.generateRandomStringNumber(6).toUpperCase());
+        String password = "Pr@xymAcademy1"+adminCreateDto.getUsername();
+
         Mapper mapper=new DozerBeanMapper() ;
         Admin admin=mapper.map(adminCreateDto,Admin.class);
-        admin.setActive(false);
+        admin.setActive(true);
+        admin.setPassword(password);
         if(roleService.findById(1l).isPresent()) {
             Role role = roleService.findById(1l).get();
             admin.addRole(role);
@@ -66,6 +72,11 @@ public class AdminServiceImpl implements AdminService {
         mailService.sendEmail(mail);
 
         return adminDao.create(admin);
+    }
+
+    @Override
+    public List<Admin> FindAllWithInheritance() {
+        return adminDao.FindAllWithInheritance();
     }
 
     @Override

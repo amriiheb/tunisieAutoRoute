@@ -7,6 +7,6 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "admin")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public class Admin extends  Learner{
+public class Admin extends  Trainer{
 
 }

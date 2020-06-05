@@ -14,4 +14,6 @@ public interface Category_TrainingService {
     Optional<TrainingCategory> findById(Long id) ;
     TrainingCategory create (TrainingCategoryDto trainingCategoryDto, String path) ;
     List<TrainingCategory> findAll() ;
+
+    void Drop(Long id1);
 }

@@ -9,11 +9,8 @@
 
 <body>
 <div class="right_col" role="main" data-layout-fragment="content">
-    <div class="">
-
-
+    <div class=""></div>
     <div class="clearfix"></div>
-
     <div class="row">
         <div class="col-md-12 col-sm-12 ">
             <div class="x_panel">
@@ -25,33 +22,44 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <form class="form-horizontal form-label-left" th:action="@{/admin/training/new-training-category}" th:object="${trainingCategoryDto}" method="post" enctype="multipart/form-data" >
+                                <div class="form-group row">
+                                    <label class="col-form-label col-md-3 col-sm-3 label-align" for="name">Name<span class="required">*:</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6">
+                                        <input type="text" id="name" required="required" th:field="*{name}" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-form-label col-md-3 col-sm-3 label-align" for="description">Description  <span class="required">*:</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6">
+                                <textarea id="description" required="required" class="form-control" name="description" th:field="*{description}"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-form-label col-md-3 col-sm-3 label-align" for="photo">Photo  <span class="required">*:</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6">
+                                        <input type="file" id="photo" required="required" th:field="*{photo}" accept="image/png, image/jpeg"  class="custom-file-input">
+                                    </div>
+                                    <div class="col-md-2 col-sm-4 " >
+                                        <button type='submit' ><i class="fa fa-plus"></i> </button>
+                                    </div>
 
-                    <form class="form-horizontal form-label-left" th:action="@{/admin/training/new-category}" th:object="${trainingCategoryDto}" method="post" enctype="multipart/form-data" >
+                                </div>
+                            </form>
 
 
-                        <div class="form-group ">
-                            <div class="row">
-                                <label >Name *: </label>
-                                <input type="text" id="name" required="required" th:field="*{name}" class="form-control">
-
-                            </div>
-                            <br> <br>
-                            <div class="row">
-
-                                <input type="file" id="photo" required="required" th:field="*{photo}"  class="form-control">
-
-
-                            </div>
-
-                            <button type='submit' class="btn btn-primary">Submit</button>
                         </div>
-
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    </div>
 </div>
 </body>
 </html>
+

@@ -20,6 +20,7 @@ public interface UserService {
     Optional<User> findById(Long id);
 
     public void verifyCode(VerifyCodeDto verifyCodeDto);
+    public void updateUser(User user) ;
 
 }
 

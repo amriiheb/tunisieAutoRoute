@@ -1,0 +1,305 @@
+<html lang="en" data-layout-decorate="~{fragments/layout}"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org">
+<head>
+    <title>profile</title>
+
+<body>
+<div class="right_col" role="main" data-layout-fragment="content">
+
+            <div class="">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 ">
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <h2>Profile</h2>
+                                <ul class="nav navbar-right panel_toolbox">
+
+                                </ul>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content">
+                                <div class="col-md-3 col-sm-3  profile_left">
+                                    <div class=" profile_img image view view-first ">
+
+                                        <img  style=" width:240px; height:142px ;display: block;" class="img-responsive avatar-view" th:src="@{'/uploads/profile/'}+${user.photoUrl}" alt="Avatar" title="Change the avatar">
+                                        <div class="mask ">
+                                            <p th:text="${user.lastname}+ ' ' +${user.firstname}"></p>
+
+
+                                            <div class="tools tools-bottom">
+                                                <a type="button" class="fa fa-pencil" data-toggle="modal" data-target=".image-modal"></a>
+                                            </div>
+                                        </div>
+                                        <div class="modal fade image-modal" tabindex="-1" role="dialog" aria-hidden="true">
+                                            <div class="modal-dialog modal-sm">
+                                                <div class="modal-content">
+                                                    <div class="modal-body">
+                                                        <form id="form1" runat="server" th:action="@{/user/updatephoto}" th:object="${userUpdateDto}" method="post"  enctype="multipart/form-data">
+                                                            <div class="row">
+                                                                <div class="col-md-4"></div>
+                                                                <div class="col-md-4">
+                                                                    <img th:height="50" th:width="50" id="blah" src="#" alt="your image" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <input type="file" id="imgInp" required="required" th:field="*{photo}" accept="image/png, image/jpeg"  class="custom-file-input">
+
+                                                            </div>
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                            <button type="submit" class="btn btn-primary">Save changes</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-2"> </div>
+                                        <div class="col-md-10"><h3 th:text="${user.lastname}+ ' ' +${user.firstname}"></h3></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-1"> </div>
+                                        <div class="col-md-10">
+                                            <ul class="list-unstyled user_data">
+                                            <li><i class="fa fa-map-marker user-profile-icon"></i> <small th:text="${user.location}"></small>
+                                            </li>
+
+                                            <li>
+                                                <i class="fa fa-briefcase user-profile-icon"></i> <small th:text="${user.job}"></small>
+
+                                            </li>
+
+                                            <li>
+                                                <i class="fa fa-envelope"></i> <small th:text="${user.email}"></small>
+                                            </li>
+
+                                        </ul>
+                                        </div>
+
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                        </div>
+                                        <div class="col-md-10">
+                                            <a class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>Edit Profile</a>
+                                            <br />
+                                        </div>
+                                    </div>
+
+
+
+
+
+
+
+
+
+
+                                    <!-- start skills -->
+                                    <h4>Skills &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a type="button" class="fa fa-plus-square " data-toggle="modal" data-target=".modal-skill" ></a></h4>
+                                    <div class="modal fade modal-skill" tabindex="-1" role="dialog" aria-hidden="true">
+                                        <div class="modal-dialog modal-sm">
+                                            <div class="modal-content">
+
+                                                <div class="modal-body">
+                                                    <form class="form-horizontal form-label-left" th:action="@{/user/addskill}" th:object="${newskill}" method="post">
+
+                                                        <span class="section">New skill</span>
+                                                        <div class="form-group row">
+                                                            <label class="col-form-label ccol-md-3 col-sm-3 col-xs-3 label-align" for="skill">Skill <span class="required">*:</span>
+                                                            </label>
+                                                            <div class="col-md-9 col-sm-9 col-xs-9">
+                                                                <input type="text" id="skill" name="skill" required="required" th:field="*{name}" class="form-control">
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-3 col-sm-3 col-xs-3"></div>
+                                                            <div class="col-md-9 col-sm-9 col-xs-9">
+
+                                                                <input class="knob" data-width="110" data-height="120" data-displayPrevious=true data-fgColor="#26B99A" data-skin="tron" data-thickness=".2" value="50" th:field="*{level}">
+                                                            </div>
+                                                        </div>
+
+
+                                                        <button type="button" class="btn btn-secondary " data-dismiss="modal">Close</button>
+                                                        <button type="submit" class="btn btn-primary">Save changes</button>
+                                                    </form>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+                                    <ul class="list-unstyled user_data row" th:each="skill :${skills}">
+                                        <li class="col-md-8">
+                                            <p th:text="${skill.name}"></p>
+                                            <div class="progress progress_sm">
+                                                <div class="progress-bar bg-green" role="progressbar"    th:attr="data-transitiongoal=${skill.level}"></div>
+
+                                            </div>
+                                        </li>
+
+
+                                        <div class="col-md-2"><a data-toggle="modal" th:data-id="ISBN-001122" title="Add this item" class="open-AddBookDialog fa fa-edit" href="#addBookDialog"></a></div>
+
+
+
+                                    </ul>
+                                    <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id="addBookDialog">
+                                        <div class="modal-dialog modal-sm">
+                                            <div class="modal-content">
+
+                                                <div class="modal-body">
+                                                    <input type="text" name="bookId" id="bookId" value=""/>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <!-- end of skills -->
+
+                                </div>
+                                <div class="col-md-9 col-sm-9 ">
+
+
+
+                                    <div class="" role="tabpanel" data-example-id="togglable-tabs">
+
+
+                                        <ul id="myTab" class="nav nav-tabs bar_tabs " style="text-align: center" role="tablist">
+
+                                            <li role="presentation" class="active"><a href="#tab_content1" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Projects Worked on</a></li>
+                                            <div class="col-md-2"></div>
+
+                                            <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false"> Curriculum Vitale </a></li>
+                                            <div class="col-md-2"></div>
+
+                                            <li role="presentation" class=""><a href="#tab_content4" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false"> Account Setting </a></li>
+
+
+
+                                        </ul>
+                                        <div id="myTabContent" class="tab-content">
+                                            <div role="tabpanel" class="tab-pane active" id="tab_content1" aria-labelledby="profile-tab">
+
+                                                <!-- start user projects -->
+                                                <table class="data table table-striped no-margin">
+                                                    <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>Project Name</th>
+                                                        <th>Client Company</th>
+                                                        <th class="hidden-phone">Hours Spent</th>
+                                                        <th>Contribution</th>
+                                                        <th><a type="button" class="fa fa-plus-square " data-toggle="modal" data-target=".modal-project" ></a></th>
+                                                        <div class="modal fade modal-project" tabindex="-1" role="dialog" aria-hidden="true">
+                                                            <div class="modal-dialog modal-sm">
+                                                                <div class="modal-content">
+
+                                                                    <div class="modal-body">
+                                                                        <form class="form-horizontal form-label-left" th:action="@{/user/addproject}" th:object="${newproject}" method="post">
+
+                                                                            <span class="section">New project</span>
+                                                                            <div class="form-group row">
+                                                                                <label class="col-form-label ccol-md-6 col-sm-6 col-xs-6 label-align" for="name">Project Name <span class="required">*:</span>
+                                                                                </label>
+                                                                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                                                                    <input type="text" id="name" name="name" required="required" th:field="*{name}" class="form-control">
+                                                                                </div>
+
+                                                                            </div>
+                                                                            <div class="form-group row">
+                                                                                <label class="col-form-label ccol-md-6 col-sm-6 col-xs-6 label-align" for="company">Client Company <span class="required">*:</span>
+                                                                                </label>
+                                                                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                                                                    <input type="text" id="company" name="company" required="required" th:field="*{client}" class="form-control">
+                                                                                </div>
+
+                                                                            </div>
+                                                                            <div class="form-group row">
+                                                                                <label class="col-form-label ccol-md-6 col-sm-6 col-xs-6 label-align" for="hours_spent">hours_spent <span class="required">*:</span>
+                                                                                </label>
+                                                                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                                                                    <input type="text" class="hours_spent" id="hours_spent" th:field="*{hours_spent}" value=""0/>
+
+                                                                                </div>
+
+                                                                            </div>
+                                                                            <div class=" form-group row">
+                                                                                <label class="col-form-label ccol-md-6 col-sm-6 col-xs-6 label-align" for="contribution"> Contributions <span class="required">*:</span></label>
+                                                                                <div class="col-md-6 col-sm-6 col-xs-6">
+
+                                                                                <input type="text" class="contribution" id="contribution" th:field="*{contribution}" value=""0/>
+                                                                                </div>
+                                                                            </div>
+                                                                            <button type="button" class="btn btn-secondary " data-dismiss="modal">Close</button>
+                                                                            <button type="submit" class="btn btn-primary">Save changes</button>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody th:each="project :${projects}">
+                                                    <tr>
+                                                        <td>1</td>
+                                                        <td th:text="${project.name}"></td>
+                                                        <td th:text="${project.client}"></td>
+                                                        <td class="hidden-phone" th:text="${project.hours_spent}"></td>
+                                                        <td class="vertical-align-mid">
+                                                            <div class="progress">
+                                                                <div class="progress-bar progress-bar-success" th:attr="data-transitiongoal=${project.contribution}"></div>
+                                                            </div>
+                                                        </td>
+                                                        <td><a href="#/microphone-slash"><i class="fa fa-edit"></i> </a></td>
+                                                    </tr>
+
+                                                    </tbody>
+                                                </table>
+                                                <!-- end user projects -->
+
+                                            </div>
+                                            <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
+
+                                                <embed th:src="@{'/uploads/curriculm_vitale/CV.pdf'} " type="application/pdf" width="100%" height="600px" />
+
+
+                                            </div>
+                                            <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
+                                                <p>xxFood truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui
+                                                    photo booth letterpress, commodo enim craft beer mlkshk </p>
+                                            </div>
+                                            <div role="tabpanel" class="tab-pane fade" id="tab_content4" aria-labelledby="profile-tab">
+                                                <p>xxFood truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui
+                                                    photo booth letterpress, commodo enim craft beer mlkshk </p>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+</div>
+</body>
+</html>

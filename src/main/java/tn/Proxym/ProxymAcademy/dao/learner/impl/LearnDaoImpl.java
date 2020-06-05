@@ -16,11 +16,16 @@ public class LearnDaoImpl implements LearnerDao {
 
     @Override
     public Optional<Learner> findById(long id) {
-        return Optional.empty();
+        return learnerRepository.findById(id);
     }
 
     @Override
     public List<Learner> findAll() {
+        return learnerRepository.findJustLearners();
+    }
+
+    @Override
+    public List<Learner> FindAllWithInheritance() {
         return learnerRepository.findAll();
     }
 
@@ -36,7 +41,7 @@ public class LearnDaoImpl implements LearnerDao {
 
     @Override
     public void delete(Learner entity) {
-
+learnerRepository.delete(entity);
     }
 
     @Override

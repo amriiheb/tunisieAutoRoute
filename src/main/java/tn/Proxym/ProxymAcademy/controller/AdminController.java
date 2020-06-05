@@ -39,20 +39,6 @@ public class AdminController {
     }
 
 
-    @GetMapping("/trainers")
-    public String TrainerList(Model model){
-        List<Trainer> trainers=trainerService.findAll() ;
-        model.addAttribute("trainers",trainers) ;
-        return "trainers" ;
-    }
-    @GetMapping("/admins")
-    public String AdminsList(Model model){
-        List<Admin> adminList=adminService.findAll() ;
-        model.addAttribute("admins",adminList) ;
-        return "admins.html" ;
-    }
-
-
 
 
 

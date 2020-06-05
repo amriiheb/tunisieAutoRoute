@@ -10,6 +10,9 @@ package tn.Proxym.ProxymAcademy.service.training.impl;
         import tn.Proxym.ProxymAcademy.service.trainer.TrainerService;
         import tn.Proxym.ProxymAcademy.service.training.TrainingService;
 
+        import java.util.List;
+        import java.util.Optional;
+
 @Service
 public class TrainingServiceImlp  implements TrainingService {
 
@@ -18,10 +21,26 @@ public class TrainingServiceImlp  implements TrainingService {
 
     @Autowired
     private ImageUploader imageUploader ;
+
+    @Override
+    public List<Training> findAll() {
+        return trainingDao.findAll();
+    }
+
+    @Override
+    public List<Training> myTrainings(Long id) {
+        return trainingDao.myTrainings(id);
+    }
+
+    @Override
+    public void drop(Long id) {
+        trainingDao.deleteById(id);
+    }
+
     @Override
     public Training create(TrainingCreateDtoA trainingCreateDtoA) {
         Training training=new Training() ;
-        training.setCategorie(trainingCreateDtoA.getCategory());
+        training.setCategory(trainingCreateDtoA.getCategory());
         training.setDescription(trainingCreateDtoA.getDescription());
         training.setName(trainingCreateDtoA.getName());
         training.setDifficulty(trainingCreateDtoA.getDifficulty());
@@ -29,7 +48,12 @@ public class TrainingServiceImlp  implements TrainingService {
         training.setTrainer(trainingCreateDtoA.getTrainer());
         MultipartFile file=trainingCreateDtoA.getPhoto() ;
 
-        training.setPhoto(imageUploader.ImageUpload(file,"D://Workspace_spring//proxym_university//Proxym_University//upload"));
+        training.setPhoto(imageUploader.ImageUpload(file,"D://Workspace_spring//proxym_university//Proxym_University//upload//training"));
         return trainingDao.create(training);
+    }
+
+    @Override
+    public Optional<Training> findById(Long id) {
+        return trainingDao.findById(id);
     }
 }

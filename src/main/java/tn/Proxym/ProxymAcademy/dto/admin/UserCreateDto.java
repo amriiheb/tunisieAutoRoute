@@ -17,8 +17,6 @@ import java.sql.Date;
 @NoArgsConstructor
 public class UserCreateDto {
     private Long id ;
-    @ValidUsername
-    @ValidCreateUsername
     private String username ;
     private String firstname ;
     private String lastname ;

@@ -16,6 +16,15 @@ public class TrainingCreateDtoA {
     private Trainer trainer ;
     private TrainingCategory Category ;
     private String Difficulty ;
+
+    public MultipartFile getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(MultipartFile photo) {
+        this.photo = photo;
+    }
+
     private int NumberOfHours ;
     private MultipartFile photo ;
 

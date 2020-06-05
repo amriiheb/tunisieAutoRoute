@@ -8,10 +8,7 @@
     <mapping>
         <class-a>tn.Proxym.ProxymAcademy.dto.admin.UserCreateDto</class-a>
         <class-b>tn.Proxym.ProxymAcademy.model.Admin</class-b>
-        <field>
-            <a>username</a>
-            <b>username</b>
-        </field>
+
         <field>
             <a>firstname</a>
             <b>firstname</b>

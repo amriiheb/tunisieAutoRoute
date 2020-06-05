@@ -41,6 +41,6 @@ public class Training_CategoryDaoImpl implements Training_CategoryDao{
 
     @Override
     public void deleteById(long entityId) {
-
+               trainingCategoryRepository.deleteById(entityId);
     }
 }
