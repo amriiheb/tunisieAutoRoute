@@ -1,8 +1,8 @@
-package tn.Proxym.ProxymAcademy.dao.admin.impl;
+package tn.Proxym.ProxymAcademy.dto.dao.admin.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import tn.Proxym.ProxymAcademy.dao.admin.AdminDao;
+import tn.Proxym.ProxymAcademy.dto.dao.admin.AdminDao;
 import tn.Proxym.ProxymAcademy.model.Admin;
 import tn.Proxym.ProxymAcademy.repository.AdminRepository;
 

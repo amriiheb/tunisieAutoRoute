@@ -1,10 +1,9 @@
 package tn.Proxym.ProxymAcademy.service.user.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import tn.Proxym.ProxymAcademy.dao.user.UserDao;
-import tn.Proxym.ProxymAcademy.dao.verify_user.VerifyUserDao;
+import tn.Proxym.ProxymAcademy.dto.dao.user.UserDao;
+import tn.Proxym.ProxymAcademy.dto.dao.verify_user.VerifyUserDao;
 import tn.Proxym.ProxymAcademy.dto.UserCreateDto;
 import tn.Proxym.ProxymAcademy.dto.VerifyCodeDto;
 import tn.Proxym.ProxymAcademy.mail.Mail;
@@ -12,8 +11,8 @@ import tn.Proxym.ProxymAcademy.mail.MailService;
 import tn.Proxym.ProxymAcademy.model.Role;
 import tn.Proxym.ProxymAcademy.model.User;
 import tn.Proxym.ProxymAcademy.model.VerifyAccount;
-import tn.Proxym.ProxymAcademy.service.user.UserService;
 import tn.Proxym.ProxymAcademy.service.role.RoleService;
+import tn.Proxym.ProxymAcademy.service.user.UserService;
 import tn.Proxym.ProxymAcademy.util.RandomUtil;
 
 import javax.mail.MessagingException;
@@ -35,16 +34,16 @@ public class UserServiceImpl implements UserService {
 
 
     @Autowired
-    private MailService mailService ;
+    private MailService mailService;
 
     @Override
     public void updateUser(User user) {
-        accountDao.update(user) ;
+        accountDao.update(user);
 
     }
 
     @Override
-    public User createMember(UserCreateDto accountDto) throws  MessagingException{
+    public User createMember(UserCreateDto accountDto) throws MessagingException {
 
         String email = accountDto.getEmail();
         String username = accountDto.getUsername();
@@ -56,7 +55,7 @@ public class UserServiceImpl implements UserService {
         account.setPassword(password);
         account.setActive(false);
 
-        if(roleService.findById(2l).isPresent()) {
+        if (roleService.findById(2l).isPresent()) {
             Role role = roleService.findById(2l).get();
             account.addRole(role);
         }
@@ -85,7 +84,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User createAdmin(UserCreateDto accountDto)   {
+    public User createAdmin(UserCreateDto accountDto) {
         String email = accountDto.getEmail();
         String username = accountDto.getUsername();
         String password = accountDto.getPassword();
@@ -94,7 +93,7 @@ public class UserServiceImpl implements UserService {
         account.setEmail(email);
         account.setUsername(username);
         account.setPassword(password);
-        if(roleService.findById(2l).isPresent()) {
+        if (roleService.findById(2l).isPresent()) {
             Role role = roleService.findById(2l).get();
             account.addRole(role);
         }
@@ -104,7 +103,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Optional<User> findByUsernameOrEmail(String username, String email)   {
+    public Optional<User> findByUsernameOrEmail(String username, String email) {
         return accountDao.findByUsernameOrEmail(username, email);
     }
 

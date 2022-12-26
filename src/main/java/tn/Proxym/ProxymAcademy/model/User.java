@@ -120,8 +120,6 @@ public   class User implements Serializable{
 	private Set<VerifyAccount> verifyAccounts;
 
 
-	@OneToMany(targetEntity=Skill.class, mappedBy="user",cascade=CascadeType.ALL, fetch = FetchType.LAZY)
-	private Set<Skill> skills ;
 
 	public Long getId() {
 		return id;

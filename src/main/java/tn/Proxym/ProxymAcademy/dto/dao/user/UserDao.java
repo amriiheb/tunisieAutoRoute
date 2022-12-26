@@ -1,7 +1,7 @@
-package tn.Proxym.ProxymAcademy.dao.user;
+package tn.Proxym.ProxymAcademy.dto.dao.user;
 
 import org.springframework.stereotype.Repository;
-import tn.Proxym.ProxymAcademy.dao.IOperations;
+import tn.Proxym.ProxymAcademy.dto.dao.IOperations;
 import tn.Proxym.ProxymAcademy.model.User;
 
 import java.util.Optional;

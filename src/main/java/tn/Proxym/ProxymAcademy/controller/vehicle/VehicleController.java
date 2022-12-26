@@ -1,2 +1,4 @@
-package tn.Proxym.ProxymAcademy.controller.vehicle;public class VehicleController {
+package tn.Proxym.ProxymAcademy.controller.vehicle;
+
+public class VehicleController {
 }

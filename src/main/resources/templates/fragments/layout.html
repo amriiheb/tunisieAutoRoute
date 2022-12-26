@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Meta, title, CSS, favicons, etc. -->
@@ -24,7 +24,8 @@
     <link href="/webjars/dropzone/5.5.0/min/dropzone.min.css" rel="stylesheet">
 
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/css/ion.rangeSlider.min.css"/>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/css/ion.rangeSlider.min.css"/>
 
 
     <!-- PNotify -->
@@ -33,8 +34,6 @@
     <link href="/vendors/pnotify/dist/pnotify.nonblock.css" rel="stylesheet">
     <!--summernote -->
     <link rel="stylesheet" href="/assets/summernote/summernote-bs4.css"/>
-
-
 
 
     <!-- Custom Theme Style -->
@@ -50,15 +49,15 @@
             <div class="left_col scroll-view">
                 <div class="navbar nav_title" style="border: 0;">
 
-                    <a href="index.html" ><img src="/images/rsz_1proxymu.png" alt="..." class="img-circle profile_img"  ></a>
+                    <a href="index.html"><img src="/images/ongletLogo.bmp" alt="..." class="img-circle profile_img"></a>
 
                 </div>
 
                 <div class="clearfix"></div>
-<!--
-                 menu profile quick info
-                <div data-th-replace="fragments/fragment-menu-profile-quick-info :: menu-profile-quick-info"></div>
-                 /menu profile quick info -->
+                <!--
+                                 menu profile quick info
+                                <div data-th-replace="fragments/fragment-menu-profile-quick-info :: menu-profile-quick-info"></div>
+                                 /menu profile quick info -->
 
                 <br/>
                 <br/>
@@ -99,7 +98,7 @@
 <!-- NProgress -->
 <script src="/webjars/nprogress/nprogress.js"></script>
 <!-- jQuery Smart Wizard -->
-<script src="/vendors/jQuery-Smart-Wizard/js/jquery.smartWizard.js"> </script>
+<script src="/vendors/jQuery-Smart-Wizard/js/jquery.smartWizard.js"></script>
 
 <!--- Learner List Page -->
 <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
@@ -134,11 +133,25 @@
 <script src="/webjars/bootstrap-progressbar/0.9.0/bootstrap-progressbar.min.js"></script>
 
 <!-- jQuery Knob -->
-<script src="/webjars/jquery-knob/1.2.11/jquery.knob.min.js"> </script>
+<script src="/webjars/jquery-knob/1.2.11/jquery.knob.min.js"></script>
 
 <!-- Custom Theme Scripts -->
 <script src="/js/custom.min.js"></script>
 
 <script src="/test.js"></script>
+<script>
+    $('#myModal1').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        console.log("+++++")
+        console.log("+++++")
+        var image = button.data('image') // Extract info from data-* attributes
+        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+        console.log(image)
+
+        var modal = $(this)
+        modal.find('.modal-body img').prop("src",image)
+    })
+</script>
 </body>
 </html>

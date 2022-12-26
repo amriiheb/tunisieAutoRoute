@@ -1,7 +1,7 @@
-package tn.Proxym.ProxymAcademy.dao.user.impl;
+package tn.Proxym.ProxymAcademy.dto.dao.user.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import tn.Proxym.ProxymAcademy.dao.user.UserDao;
+import tn.Proxym.ProxymAcademy.dto.dao.user.UserDao;
 import tn.Proxym.ProxymAcademy.model.User;
 import tn.Proxym.ProxymAcademy.repository.UserRepository;
 

@@ -1,4 +1,4 @@
-package tn.Proxym.ProxymAcademy.dao;
+package tn.Proxym.ProxymAcademy.dto.dao;
 
 import java.io.Serializable;
 import java.util.List;

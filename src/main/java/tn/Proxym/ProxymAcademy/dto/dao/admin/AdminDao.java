@@ -1,6 +1,6 @@
-package tn.Proxym.ProxymAcademy.dao.admin;
+package tn.Proxym.ProxymAcademy.dto.dao.admin;
 
-import tn.Proxym.ProxymAcademy.dao.IOperations;
+import tn.Proxym.ProxymAcademy.dto.dao.IOperations;
 import tn.Proxym.ProxymAcademy.model.Admin;
 
 import java.util.List;

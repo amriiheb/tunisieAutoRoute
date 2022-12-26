@@ -1,7 +1,7 @@
 package tn.Proxym.ProxymAcademy.validator.user_verify;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import tn.Proxym.ProxymAcademy.dao.verify_user.VerifyUserDao;
+import tn.Proxym.ProxymAcademy.dto.dao.verify_user.VerifyUserDao;
 import tn.Proxym.ProxymAcademy.model.VerifyAccount;
 
 import javax.validation.ConstraintValidator;

@@ -2,7 +2,7 @@ package tn.Proxym.ProxymAcademy.service.role.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import tn.Proxym.ProxymAcademy.dao.role.RoleDao;
+import tn.Proxym.ProxymAcademy.dto.dao.role.RoleDao;
 import tn.Proxym.ProxymAcademy.model.Role;
 import tn.Proxym.ProxymAcademy.service.role.RoleService;
 

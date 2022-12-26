@@ -1,8 +1,8 @@
-package tn.Proxym.ProxymAcademy.dao.role.impl;
+package tn.Proxym.ProxymAcademy.dto.dao.role.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import tn.Proxym.ProxymAcademy.dao.role.RoleDao;
+import tn.Proxym.ProxymAcademy.dto.dao.role.RoleDao;
 import tn.Proxym.ProxymAcademy.model.Role;
 import tn.Proxym.ProxymAcademy.repository.RoleRepository;
 

@@ -1,7 +1,6 @@
 package tn.Proxym.ProxymAcademy.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,7 +9,6 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -18,32 +16,33 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableAutoConfiguration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-public class SecurityConfiguration  extends WebSecurityConfigurerAdapter {
+public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 
-   @Autowired
-    CustomDetailsService customDetailsService ;
-   @Autowired
-   CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler ;
-   @Autowired
-   CustomAuthenticationFailureHandler customAuthenticationFailureHandler ;
+    @Autowired
+    CustomDetailsService customDetailsService;
+    @Autowired
+    CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler;
+    @Autowired
+    CustomAuthenticationFailureHandler customAuthenticationFailureHandler;
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
-        auth.userDetailsService(customDetailsService).passwordEncoder(encoder()) ;
-
+        auth.userDetailsService(customDetailsService).passwordEncoder(encoder());
 
 
     }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf()
                 .disable()
                 .authorizeRequests()
-                .antMatchers("/admin").hasAnyRole("ADMIN")
-                .antMatchers("/","/sign-up/**", "/verify-code/**","/webjars/**", "/peritable/**","/assets/**",
-                        "/login/**","/index","/webjars/**","/develop/*","/vendors/**").permitAll()
-                .anyRequest().authenticated()
+                .antMatchers("/admin/**").permitAll()
+                .antMatchers("/", "/sign-up/**", "/verify-code/**", "/webjars/**", "/peritable/**", "/assets/**",
+                        "/login/**", "/index", "/webjars/**", "/develop/*", "/vendors/**").permitAll()
+                .anyRequest().permitAll()
                 .and()
                 .formLogin()
                 .loginPage("/login")
@@ -52,7 +51,7 @@ public class SecurityConfiguration  extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                 .logoutUrl("/logout");
-        http.headers().frameOptions().sameOrigin() ;
+        http.headers().frameOptions().sameOrigin();
 
     }
 

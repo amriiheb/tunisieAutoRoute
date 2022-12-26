@@ -9,43 +9,32 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import tn.Proxym.ProxymAcademy.dto.admin.UserCreateDto;
 import tn.Proxym.ProxymAcademy.model.Admin;
-import tn.Proxym.ProxymAcademy.model.Learner;
-import tn.Proxym.ProxymAcademy.model.Trainer;
 import tn.Proxym.ProxymAcademy.service.admin.AdminService;
-import tn.Proxym.ProxymAcademy.service.learner.LearnerService;
-import tn.Proxym.ProxymAcademy.service.trainer.TrainerService;
 
 import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/admin")
 public class AddUser {
-    @Autowired
-    LearnerService learnerService ;
+
 
     @Autowired
-    AdminService adminService ;
-    @Autowired
-    TrainerService trainerService ;
+    AdminService adminService;
+
+
     @GetMapping("/new-user")
-    public String signUp(UserCreateDto userCreateDto, Model model){
-        return "add-user" ;
+    public String signUp(UserCreateDto userCreateDto, Model model) {
+        return "add-user";
     }
-    @PostMapping("/new-user")
-    public String signUp(@Valid UserCreateDto userCreateDto, BindingResult result) throws  Exception{
-        if(result.hasErrors()){
-            return "add-user" ;
-        }
-        if(userCreateDto.getType().equals("admin")){
-            Admin admin=adminService.createAdmin(userCreateDto) ;
-        }
-        else  if(userCreateDto.getType().equals("learner")){
-            Learner learner = learnerService.create(userCreateDto) ;
-        }
-        else if(userCreateDto.getType().equals("trainer")){
-            Trainer trainer=trainerService.create(userCreateDto) ;
-        }
 
+    @PostMapping("/new-user")
+    public String signUp(@Valid UserCreateDto userCreateDto, BindingResult result) throws Exception {
+        if (result.hasErrors()) {
+            return "add-user";
+        }
+        if (userCreateDto.getType().equals("admin")) {
+            Admin admin = adminService.createAdmin(userCreateDto);
+        }
         return "redirect:dashboard";
     }
 }

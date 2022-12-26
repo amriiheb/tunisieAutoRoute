@@ -7,9 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import tn.Proxym.ProxymAcademy.model.Admin;
-import tn.Proxym.ProxymAcademy.model.Trainer;
 import tn.Proxym.ProxymAcademy.service.admin.AdminService;
-import tn.Proxym.ProxymAcademy.service.trainer.TrainerService;
 
 import java.util.List;
 @Controller

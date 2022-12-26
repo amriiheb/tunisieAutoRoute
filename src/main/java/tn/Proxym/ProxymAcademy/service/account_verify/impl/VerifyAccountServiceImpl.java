@@ -2,8 +2,8 @@ package tn.Proxym.ProxymAcademy.service.account_verify.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import tn.Proxym.ProxymAcademy.dao.user.UserDao;
-import tn.Proxym.ProxymAcademy.dao.verify_user.VerifyUserDao;
+import tn.Proxym.ProxymAcademy.dto.dao.user.UserDao;
+import tn.Proxym.ProxymAcademy.dto.dao.verify_user.VerifyUserDao;
 import tn.Proxym.ProxymAcademy.model.VerifyAccount;
 import tn.Proxym.ProxymAcademy.service.account_verify.VerifyAccountService;
 

@@ -1,4 +1,4 @@
-package tn.Proxym.ProxymAcademy.dao.verify_user;
+package tn.Proxym.ProxymAcademy.dto.dao.verify_user;
 
 import tn.Proxym.ProxymAcademy.model.VerifyAccount;
 
