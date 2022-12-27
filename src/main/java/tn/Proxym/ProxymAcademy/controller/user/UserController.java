@@ -21,19 +21,22 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
     @GetMapping("sign-up")
-    public String signUp(UserCreateDto userCreateDto, Model model){
-        return "sign-up" ;
+    public String signUp(UserCreateDto userCreateDto, Model model) {
+        return "sign-up";
     }
+
     @PostMapping("sign-up")
-    public String signUp(@Valid UserCreateDto userCreateDto, BindingResult result) throws  Exception{
-        if(result.hasErrors()){
-            return "sign-up" ;
+    public String signUp(@Valid UserCreateDto userCreateDto, BindingResult result) throws Exception {
+        if (result.hasErrors()) {
+            return "sign-up";
         }
         User account = userService.createMember(userCreateDto);
         userCreateDto.setId(account.getId());
         return "redirect:/verify-code";
     }
+
     @GetMapping("verify-code")
     public String verifyCode(Model model, VerifyCodeDto verifyCodeDto) {
 
@@ -42,7 +45,7 @@ public class UserController {
 
     @PostMapping("verify-code")
     public String verifyCodeAction(Model model, @Valid VerifyCodeDto verifyCodeDto, BindingResult result) {
-        if(result.hasErrors()) {
+        if (result.hasErrors()) {
             return "verify-code";
         }
 
@@ -52,9 +55,9 @@ public class UserController {
     }
 
 
-    @GetMapping("login")
-    public String login(Model model, HttpServletRequest request){
-        return "login" ;
+    @GetMapping("")
+    public String login(Model model, HttpServletRequest request) {
+        return "adminDashboard";
     }
 
 
